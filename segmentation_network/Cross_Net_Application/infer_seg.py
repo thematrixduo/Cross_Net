@@ -17,7 +17,7 @@ import tensorflow as tf
 import scipy as sp
 #load input and model scripts
 import infer_seg_load_data as input_data
-import 17l_freq_decay_5_1 as model
+import fcn_8l_freq_decay_5_2 as model
 #import original_fcn_vgg_5_3 as model
 
 
@@ -27,7 +27,7 @@ flags = tf.app.flags
 FLAGS = flags.FLAGS
 flags.DEFINE_float('learning_rate', 0.01, 'Initial learning rate.')
 flags.DEFINE_integer('max_steps', 100, 'Number of steps to run trainer.')
-flags.DEFINE_integer('batch_size', 20, 'Batch size.  '
+flags.DEFINE_integer('batch_size', 1, 'Batch size.  '
                      'Must divide evenly into the dataset sizes.')
 flags.DEFINE_string('image_dir', 'CT_patch/', 'Directory to put the training data.')
 flags.DEFINE_string('predict_dir', 'segmented_patch/', 'Directory to put the training data.')
@@ -168,7 +168,7 @@ def run_infer():
     # Run the Op to initialize the variables and load weights.
     init = tf.initialize_all_variables()
     sess.run(init)
-    saver.restore(sess, "model_5_8l_1.ckpt")
+    saver.restore(sess, "model_5_8l_2.ckpt")
     print("weights loaded")
     # Instantiate a SummaryWriter to output summaries and the Graph.
     summary_writer = tf.train.SummaryWriter('/tmp/model_logs_cnn',

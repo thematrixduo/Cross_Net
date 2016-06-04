@@ -133,8 +133,8 @@ class DataSet(object):
       #np.random.shuffle(perm)
       #self._images = self._images[perm]
       # Start next epoch
-      start = 0
-      self._index_in_epoch = batch_size
+      #start = 0
+      self._index_in_epoch = self._num_examples
       assert batch_size <= self._num_examples 
     end = self._index_in_epoch
     return self._images[start:end],self._filenames[start:end]
